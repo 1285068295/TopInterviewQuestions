@@ -12,8 +12,170 @@ package topinterviewquestions;
  * p:  .*  -> .... ->abcd
  *
  *
+ * 题目指示
+ * 1 0 <= s.length <= 20
+ * 2 0 <= p.length <= 30
+ * 3 s 可能为空，且只包含从 a-z 的小写字母。
+ * 4 p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。
+ * 5 保证每次出现字符 * 时，前面都匹配到有效的字符
+ * 由第5点  知道必须左isValid 方法的前置校验！！！
+ *
+ *
+ *
+ *
  */
 public class Problem_0010_RegularExpressionMatching {
+
+    // **********************下面代码为 20210921 学完44题后回来重写的  **************************************
+    /**
+     * 暴力版本  有bug  测试用例没通过！！！  日！！！
+     * @param s
+     * @param p
+     * @return
+     */
+    public static boolean isMatch11(String s, String p) {
+        if(s == null || p == null){
+            return false;
+        }
+
+        char[] str = s.toCharArray();
+        char[] pattern = p.toCharArray();
+
+        // isValid 校验str字符换 同时校验patten字符串
+        return isValid(str, pattern) && process11(str, pattern, 0, 0) ;
+    }
+
+
+    private static boolean process11(char[] str, char[] pattern, int si, int pi) {
+        if(si == str.length){
+            // baseCase  与 44题不同呀 老哥
+
+            // str此时为空串
+            if (pi == pattern.length) {
+                return true;
+            }
+            // 用pattern pi...变成空串str的情况!!!
+            // 如 "a*" 可以变成""  pi的位置没有影响  pi+1位置必须为*
+            if (pi + 1 < pattern.length && pattern[pi + 1] == '*') {
+                return process1(str, pattern, si, pi + 2);
+            }
+            return false;
+        }
+
+
+        // si!=str.length  pi=pattern.length 一定是false的
+        if (pi == pattern.length) {
+            return false;
+
+        }
+
+        // si!=str.length  pi!=pattern.length
+        // 因为*必须与前置字符配合使用  所以我们的大的分类方向是 pi位置看下  pi+1位置是否为*
+        // 这样就能保证 我们递归函数在调用过程中 一定不会单独的面都pi位置为 * 的情况
+        // 整个process11函数在调用的过程中 我们可以保证pi位置不是*  所以pi位置是 * 的情况不需要讨论！！！  这一点很重要！！！
+
+        // 特别的注意 在isValid的方法中已经校验了 pattern中不存在连续的 * ！！！
+
+        // pi+1 位置不是 *的情况
+        if (pi + 1 == pattern.length || pattern[pi + 1] != '*') {
+            // pi是.的情况 和 普通字符
+            return (pattern[pi] == '.' || str[si] == pattern[pi]) && process11(str, pattern, si + 1, pi + 1);
+        }
+
+
+        // pi+1位置是*情况  在isValid中校验了不能存在连续的* 所以pi+1为*  pi+2 一定不是*
+        // 继续分类 pi位置为普通字符  和 . 情况
+        // .* --> 可以转为 .........  任意个数的.  所以要特殊讨论
+        if(pattern[pi] != '.'){
+            // aaa bc
+            // a*  abc  ->  a aa  aaa  aaaa  aaaa ...
+            // a*  可以变成  0个a  1个a  2个a
+
+            // si与pi不相等的情况
+            if (pattern[pi] != str[si]) {
+                // 此时只能把  pi 与pi+1 当作空串处理
+                return process11(str, pattern, si, pi + 2);
+            }
+
+            // 下面的情况是  str[si] = pattern[pi]的情况
+
+
+
+            // str[si] = pattern[pi]
+            // 计算出str中存在多个重复的字符
+            int len = 1;
+            while(si + len < str.length && str[si] == str[si+len]){
+                len++;
+            }
+
+
+            for (int i = 0; i <= len; i++) {
+                // pi *作为 ""  "a"  "aa"  "aaa" ...  去与str中  aaa (相同的字符)进行匹配
+                if (process11(str, pattern, si + i, pi + 2)) {
+                    return true;
+                }
+            }
+
+            // 上面的for循环执行完 没有返回true  说明 pi作为 ""(空串)  "a" "aa"  ... 没有一个可以与str中 aaa(相同的字符串) 匹配上
+            // 最后执行process11 最后代码 返回false
+        }
+
+        if (pattern[pi] == '.') {
+            // pi位置的 . 与 pi+1 位置的 *  组成 .  .. ... ....  (一个点  两个点  三个点 ...) 与str后面的字符去匹配
+            for (int i = 1; i <= str.length - si; i++) {
+                if (process11(str, pattern, si + i, pi + 2)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
+
+
+    // 动态规划版本的有时间再写！！！  TODO
+
+
+    public static void main(String[] args) {
+        System.out.println(isMatch4(
+                "aaa",
+                "ab*a"));
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ***************************上面代码为20210921 学习完成44题后  回来重写的版本************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static boolean isMatch1(String s, String p) {
         if(s == null || p == null){
@@ -335,16 +497,21 @@ public class Problem_0010_RegularExpressionMatching {
                 }
             }
         }
+
+
+
+        for (int i = 0; i < dp.length; i++) {
+            for (int j = 0; j < dp[0].length; j++) {
+                System.out.print(dp[i][j] +"\t");
+
+            }
+            System.out.println();
+        }
+
+        System.out.println();
         return dp[0][0];
     }
 
-
-
-    public static void main(String[] args) {
-
-
-        System.out.println(isMatch2("a","a*"));
-    }
 
 
 
