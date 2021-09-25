@@ -58,13 +58,13 @@ public class Problem_0046_Permutations {
             ans.add(path);
         }else {
             for (int i = 0; i < nums.length - cur; i++) {
+                // 因为是原地调整  所以需要恢复现场！！！
                 swap(nums, cur, cur + i);
                 process(nums, cur + 1, ans);
+                // 恢复现场！！！
                 swap(nums, cur + i, cur);
             }
         }
-
-
     }
 
     public static void swap(int[] arr, int i ,int j){
@@ -72,6 +72,21 @@ public class Problem_0046_Permutations {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
