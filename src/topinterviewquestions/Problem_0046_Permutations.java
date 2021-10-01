@@ -61,7 +61,7 @@ public class Problem_0046_Permutations {
                 // 因为是原地调整  所以需要恢复现场！！！
                 swap(nums, cur, cur + i);
                 process(nums, cur + 1, ans);
-                // 恢复现场！！！
+                // 恢复现场！！！  原因是复用了nums的现场
                 swap(nums, cur + i, cur);
             }
         }
