@@ -69,7 +69,7 @@ public class Problem_0029_DivideTwoIntegers {
      *
      * a+b = (a^b) + (a&b << 1)
      * a异或b 是无进位相加运算  加上  a与b 右移一位得到进位信息
-     *
+     * 递归直到 进位符号为0为止
      * @param a
      * @param b
      * @return
