@@ -12,8 +12,6 @@ package topinterviewquestions;
  *  思路就是准备了一个新的矩阵 从原来的就矩阵4条边入手  遇到O就把对应新矩阵对应位置改为O 并向四周扩散 相连的O同时映射到新的矩阵上
  *  处理完四条边后 根据新矩阵的O的情况 得到最终的答案
  *
- *
- *
  */
 public class Problem_0130_SurroundedRegions {
     public static void solve(char[][] board) {

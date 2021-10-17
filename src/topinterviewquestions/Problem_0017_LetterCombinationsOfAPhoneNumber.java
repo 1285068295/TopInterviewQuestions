@@ -13,8 +13,6 @@ import java.util.List;
  * 【解题思路】直接暴力的深度优先遍历然后收集每个答案即可，因为按下的数字是已知的所以生成的每个结果的长度必然是固定的
  * 所以使用数组即可  不需要用ArrayList 可以节省空间
  *
- *
- *
  */
 public class Problem_0017_LetterCombinationsOfAPhoneNumber {
     public static char[][] phone = {

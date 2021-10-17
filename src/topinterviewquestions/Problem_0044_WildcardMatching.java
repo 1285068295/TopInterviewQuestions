@@ -14,9 +14,6 @@ package topinterviewquestions;
  *
  * 【参考第10题  这道题比第10题要简单！！！】
  *
- *
- *
- *
  */
 public class Problem_0044_WildcardMatching {
 

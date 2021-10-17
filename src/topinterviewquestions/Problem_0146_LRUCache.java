@@ -1,7 +1,6 @@
 package topinterviewquestions;
 
 import java.util.HashMap;
-import java.util.NavigableMap;
 
 /**
  * @author ：Lisp
@@ -24,7 +23,6 @@ import java.util.NavigableMap;
  *
  *
  *    整体思路简述：内部使用MyCache  MyCache内部使用map和双向链表
- *
  *
  */
 public class Problem_0146_LRUCache {

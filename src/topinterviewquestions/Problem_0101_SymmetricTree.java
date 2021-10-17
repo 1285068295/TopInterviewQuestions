@@ -1,8 +1,5 @@
 package topinterviewquestions;
 
-import sun.reflect.generics.tree.Tree;
-
-import java.util.Deque;
 import java.util.LinkedList;
 
 /**

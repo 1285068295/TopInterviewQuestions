@@ -1,10 +1,5 @@
 package topinterviewquestions;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * @author ：Lisp
  * @date： 2021/9/20
@@ -27,7 +22,6 @@ import java.util.Map;
  *
  */
 public class Problem_0038_CountAndSay {
-
 
     /**
      * 3322251  ->  2个3 3个2 1个5 1个1 ->23321511

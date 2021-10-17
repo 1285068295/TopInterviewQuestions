@@ -1,7 +1,5 @@
 package topinterviewquestions;
 
-import java.util.Arrays;
-
 /**
  * @author ：Lisp
  * @date： 2021/9/5
@@ -79,7 +77,6 @@ import java.util.Arrays;
  *		R = i + pArr[i];
  *		C = i;
  *	}
- *
  *
  *
  *  0123

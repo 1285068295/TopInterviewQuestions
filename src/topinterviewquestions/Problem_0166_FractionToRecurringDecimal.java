@@ -1,7 +1,5 @@
 package topinterviewquestions;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,10 +15,7 @@ import java.util.Map;
  *   用50/6=8...2   再算2/6    20/6=3...2   余数2即出现位置为 2-2  依次类推
  *   余数开始重复出现时 就代表小数出现了重复
  *
- *
- *
  * 计算机的小数相除实现方式！！！
- *
  *
  */
 public class Problem_0166_FractionToRecurringDecimal {

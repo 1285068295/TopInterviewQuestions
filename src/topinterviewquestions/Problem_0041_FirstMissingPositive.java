@@ -5,7 +5,7 @@ package topinterviewquestions;
  * @date： 2021/9/20
  * @version: V1.0
  * @slogan:
- * @description : 找数组中确实的第一个正数
+ * @description : 找数组中缺失的第一个正数  等同于 268题
  * 【解题思路】
  * 1  L=0 R=length  在0~L 范围上  每一个数组的位置要保证是  arr[i] = i+1
  * R  当前数组的最好的预期值  如长度为9的数组  最大的数组预期值为 R+1

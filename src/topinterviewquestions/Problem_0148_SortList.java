@@ -35,7 +35,59 @@ public class Problem_0148_SortList {
         }
     }
 
-    public static ListNode sortList(ListNode head) {
+
+    public ListNode sortList(ListNode head) {
+        return sort(head, null);
+    }
+
+    private ListNode sort(ListNode start, ListNode end) {
+        if (start == end) {
+            return start;
+        }
+
+        ListNode fast = start, slow = start;
+        while (fast != end && fast.next != end) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        // 排序后半部分
+        ListNode l2 = sort(slow.next, end);
+        // 从中间断开
+        slow.next = null;
+        // 排序前半部分
+        ListNode l1 = sort(start, slow);
+
+        // 合并链表
+        return merge(l1, l2);
+    }
+
+
+    /**
+     * 利用递归来merge 确实是秒呀！！！
+     * l1 1 -> 2 -> 7 -> 9 -> null
+     * l2 5 -> 6 -> 8 -> null
+     */
+    private ListNode merge(ListNode l1, ListNode l2) {
+        if (l1 == null || l2 == null) {
+            return l1 == null ? l2 : l1;
+        }
+
+        if (l1.val < l2.val) {
+            l1.next = merge(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = merge(l1, l2.next);
+            return l2;
+        }
+    }
+
+
+    /**
+     * 没实现出来
+     * @param head
+     * @return
+     */
+    public static ListNode sortList2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -67,13 +119,6 @@ public class Problem_0148_SortList {
             // 合并的区间段长度扩大一倍
             len *= 2;
         }
-
-
-
-
-
-
-
         return head;
 
     }
