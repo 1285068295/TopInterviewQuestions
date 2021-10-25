@@ -41,6 +41,8 @@ import java.util.*;
  *
  *  关于二叉树的层序遍历的重要知识点  使用队列 + 每遍历一层节点数量  就能完美解决二叉树的层序遍历！！！
  *
+ *  记住 先序遍历是第一次处理  中序遍历是第二次处理
+ *
  */
 public class Problem_0094_BinaryTreeInorderTraversal {
 
@@ -215,7 +217,7 @@ public class Problem_0094_BinaryTreeInorderTraversal {
     public static void Morris(TreeNode head){
         TreeNode cur =head;
 
-        while(cur !=null){
+        while (cur != null) {
             if(cur.left == null){// 没有左子树 直接右移
                 // 没有左子树  只会来到自己一次的节点
                 System.out.print(cur.val + " ");
