@@ -20,8 +20,6 @@ import java.util.List;
  *  [2 5] [1 6] 继续归并
  *  [1 2 5 6]   得到1右侧0个  2右侧1个
  *              得到5右侧2个  6右侧1个
- *
- *
  */
 public class Problem_0315_CountOfSmallerNumbersAfterSelf {
 
